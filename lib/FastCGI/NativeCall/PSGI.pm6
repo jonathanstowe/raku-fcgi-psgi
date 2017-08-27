@@ -18,7 +18,12 @@ class FastCGI::NativeCall::PSGI {
         self.new($fcgi);
     }
 
-    method run {
+    multi method run(&app) {
+        $!app = &app;
+        self.run;
+    }
+
+    multi method run {
         while $.fcgi.accept {
             %!env = $.fcgi.env;
             if %!env<CONTENT_LENGTH> {
