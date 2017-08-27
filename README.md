@@ -1,37 +1,86 @@
-# FastCGI::NativeCall::PSGI #
+# FastCGI::NativeCall::PSGI
 
-This is a PSGI interface for FastCGI::NativeCall
+This is a PSGI interface for [FastCGI::NativeCall](https://github.com/jonathanstowe/p6-fcgi)
 
-## Example ##
+[![Build Status](https://travis-ci.org/jonathanstowe/p6-fcgi-psgi.svg?branch=master)](https://travis-ci.org/jonathanstowe/p6-fcgi-psgi)
+
+## Synopsis
 
 Basic usage:
 
-    use FastCGI::NativeCall;
-    use FastCGI::NativeCall::PSGI;
+```perl6
+use FastCGI::NativeCall::PSGI;
 
-    my $sock = FastCGI::NativeCall::OpenSocket("/var/www/run/example.sock", 5);
-    my $psgi = FastCGI::NativeCall::PSGI.new(FastCGI::NativeCall.new($sock));
+my $psgi = FastCGI::NativeCall::PSGI.new(path => "/tmp/fastcgi.sock", backlog => 32);
 
-    sub dispatch-psgi($env) {
-        return [ 200, { Content-Type => 'text/html' }, "Hello world" ];
+sub dispatch-psgi($env) {
+    return [ 200, { Content-Type => 'text/html' }, "Hello world" ];
+}
+
+$psgi.run(&dispatch-psgi);
+```
+
+Using [Bailador](https://github.com/Bailador/Bailador):
+
+```perl6
+use FastCGI::NativeCall::PSGI;
+use Bailador;
+
+get "/" => sub {
+    "Hello world";
+}
+
+
+my $psgi = FastCGI::NativeCall::PSGI.new(path => "/tmp/fastcgi.sock", backlog => 32);
+$psgi.run(get-psgi-app());
+```
+
+Using [Crust](https://github.com/tokuhirom/p6-Crust):
+
+```perl6
+use FastCGI::NativeCall::PSGI;
+use Crust::Builder;
+
+my &app = builder {
+    mount "/" , sub (%env) {
+        start { 200, [Content-Type => "text/html"], ["Hello world"] };
     }
+};
 
-    $psgi.app(&dispatch-psgi);
-    $psgi.run;
 
-Example using a PSGI framework:
+my $psgi = FastCGI::NativeCall::PSGI.new(path => "/tmp/fastcgi.sock", backlog => 32);
+$psgi.run(&app);
+```
 
-    use FastCGI::NativeCall;
-    use FastCGI::NativeCall::PSGI;
-    use Bailador;
+A suitable nginx configuration for these can be found in the [examples](examples) directory.
 
-    get "/" => sub {
-        "Hello world";
-    }
+## Description
 
-    my $sock = FastCGI::NativeCall::OpenSocket("/var/www/run/example.sock", 5);
+## Installation
 
-    given FastCGI::NativeCall::PSGI.new(FastCGI::NativeCall.new($sock)) {
-        .app(&Bailador::dispatch-psgi);
-        .run;
-    }
+You will need an HTTP server that supports FastCGI to be able to use this.
+
+Assuming you have a working Rakudo Perl 6 installation then you should be able to insall it with *zef*
+
+    zef install FastCGI::NativeCall::PSGI
+
+    # Or from a local clone
+
+    zef install .
+
+## Support
+
+I am probably not the right person to be asking about the configuration of various server software
+to use FastCGI, you probably want to consult the manuals in the first place.
+
+Some parts of the support for the full P6GI/P6W spec may be incomplete.
+
+Please send suggests/patches etc to https://github.com/jonathanstowe/p6-fcgi-psgi/issues
+
+
+## Copyright and Licence
+
+This is free software. Please see the [LICENSE](LICENSE) file for details.
+
+    Copyright (c) 2015, carlin <cb@viennan.net>
+	          © 2017 Jonathan Stowe
