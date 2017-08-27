@@ -1,4 +1,5 @@
-use v6;
+use v6.c;
+
 use PSGI;
 use FastCGI::NativeCall;
 
@@ -8,12 +9,17 @@ class FastCGI::NativeCall::PSGI {
     has %!env;
     has $!app;
 
-    method new(FastCGI::NativeCall $fcgi) {
+    multi method new(FastCGI::NativeCall $fcgi) {
         return self.bless(:$fcgi);
     }
 
+    multi method new(Str :$path, Int :$backlog = 16) {
+        my $fcgi = FastCGI::NativeCall.new(:$path, :$backlog);
+        self.new($fcgi);
+    }
+
     method run {
-        while ($.fcgi.Accept() >= 0) {
+        while $.fcgi.accept {
             %!env = $.fcgi.env;
             if %!env<CONTENT_LENGTH> {
                 $!body = $.fcgi.Read(%!env<CONTENT_LENGTH>.Int).encode;
