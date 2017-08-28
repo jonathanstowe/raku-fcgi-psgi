@@ -28,7 +28,7 @@
   "provides": {
     "FastCGI::NativeCall::PSGI": "lib/FastCGI/NativeCall/PSGI.pm6"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "meta-version": "0",
   "authors": [
     "carbin"
