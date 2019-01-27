@@ -26,7 +26,13 @@ class FastCGI::NativeCall::PSGI {
     }
 
     multi method new(Int :$sock!) {
-        my $fcgi = FastCGI::NativeCall.new(:$sock);
+        DEPRECATED('named parameter "socket"');
+        self.bless(socket => $sock);
+    }
+
+
+    multi method new(Int :$socket!) {
+        my $fcgi = FastCGI::NativeCall.new(sock => $socket);
         self.bless(:$fcgi);
     }
 

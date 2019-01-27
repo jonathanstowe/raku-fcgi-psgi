@@ -53,8 +53,8 @@ subtest {
 
     my $path = sock-path();
 
-    my $sock = FastCGI::NativeCall::OpenSocket($path, 5);
-    my $psgi = FastCGI::NativeCall::PSGI.new(:$sock);
+    my $socket = FastCGI::NativeCall::OpenSocket($path, 5);
+    my $psgi   = FastCGI::NativeCall::PSGI.new(:$socket);
 
     ok $psgi, 'created object';
 
