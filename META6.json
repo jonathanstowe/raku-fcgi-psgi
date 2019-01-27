@@ -5,7 +5,7 @@
     "source": "git://github.com/jonathanstowe/p6-fcgi-psgi.git",
     "bugtracker" : "https://github.com/jonathanstowe/p6-fcgi-psgi/issues"
   },
-  "perl": "6.c",
+  "perl": "6.*",
   "resources": [
   ],
   "build-depends": [
