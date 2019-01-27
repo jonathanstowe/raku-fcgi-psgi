@@ -118,4 +118,4 @@ https://github.com/jonathanstowe/p6-fcgi-psgi/issues
 This is free software. Please see the [LICENSE](LICENSE) file for details.
 
     Copyright (c) 2015, carlin <cb@viennan.net>
-                © 2017, Jonathan Stowe
+                © 2017 - 2019 Jonathan Stowe
