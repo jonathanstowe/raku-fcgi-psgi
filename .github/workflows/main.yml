@@ -23,6 +23,12 @@ jobs:
     - name: Raku version
       run: raku -v
 
+    - name: Apt Update
+      run: apt update
+
+    - name: Install development packages and build tools
+      run: apt install -y build-essential
+
     - name: Install dependencies
       run: zef install --deps-only --/test --test-depends .
 
