@@ -1,14 +1,15 @@
 # FastCGI::NativeCall::PSGI
 
-This is a PSGI interface for [FastCGI::NativeCall](https://github.com/jonathanstowe/p6-fcgi)
+This is a PSGI interface for [FastCGI::NativeCall](https://github.com/jonathanstowe/raku-fastcgi-nativecall)
 
-[![Build Status](https://travis-ci.org/jonathanstowe/p6-fcgi-psgi.svg?branch=master)](https://travis-ci.org/jonathanstowe/p6-fcgi-psgi)
+![Build Status](https://github.com/jonathanstowe/raku-fcgi-psgi/workflows/CI/badge.svg)
+
 
 ## Synopsis
 
 Basic usage:
 
-```perl6
+```raku
 use FastCGI::NativeCall::PSGI;
 
 my $psgi = FastCGI::NativeCall::PSGI.new(path => "/tmp/fastcgi.sock", backlog => 32);
@@ -22,7 +23,7 @@ $psgi.run(&dispatch-psgi);
 
 Using [Bailador](https://github.com/Bailador/Bailador):
 
-```perl6
+```raku
 use FastCGI::NativeCall::PSGI;
 use Bailador;
 
@@ -37,7 +38,7 @@ $psgi.run(get-psgi-app());
 
 Using [Crust](https://github.com/tokuhirom/p6-Crust):
 
-```perl6
+```raku
 use FastCGI::NativeCall::PSGI;
 use Crust::Builder;
 
@@ -59,7 +60,7 @@ then your script will be executed by the server with its STDIN (file descriptor 
 a listening socket that has already been created for you, in this case your constructor will
 become:
 
-```perl6
+```raku
 my $psgi = FastCGI::NativeCall::PSGI.new(sock => 0);
 ```
 
@@ -76,7 +77,7 @@ modules,) by most common HTTP server software (such as Apache, nginx,
 lighthttpd and so forth.)
 
 This module builds on
-[FastCGI::NativeCall](https://github.com/jonathanstowe/p6-fcgi) to
+[FastCGI::NativeCall](https://github.com/jonathanstowe/raku-fastcgi-nativecall) to
 provide a PSGI/P6GI/P6W interface for web applications.
 
 Despite being single threaded it can be relatively high performance with
@@ -86,8 +87,7 @@ appropriate tuning of the server configuration.
 
 You will need an HTTP server that supports FastCGI to be able to use this.
 
-Assuming you have a working Rakudo Perl 6 installation then you should
-be able to insall it with *zef*
+Assuming you have a working Rakudo installation then you should be able to insall it with *zef*
 
     zef install FastCGI::NativeCall::PSGI
 
@@ -109,13 +109,12 @@ frameworks performed remarkably worse than others, if you have a concern
 about the performance of your application please try to test with another
 host server as it may be the framework rather than this module.
 
-Please send suggests/patches etc to
-https://github.com/jonathanstowe/p6-fcgi-psgi/issues
+Please send suggests/patches etc to [github](https://github.com/jonathanstowe/raku-fcgi-psgi/issues)
 
 
 ## Copyright and Licence
 
-This is free software. Please see the [LICENSE](LICENSE) file for details.
+This is free software. Please see the [LICENCE](LICENCE) file for details.
 
     Copyright (c) 2015, carlin <cb@viennan.net>
-                © 2017 - 2019 Jonathan Stowe
+                © 2017 - 2021 Jonathan Stowe

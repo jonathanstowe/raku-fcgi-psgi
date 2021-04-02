@@ -1,4 +1,4 @@
-#!/usr/bin/env perl6
+#!/usr/bin/env raku
 
 use FastCGI::NativeCall::PSGI;
 
@@ -11,4 +11,4 @@ sub dispatch-psgi($env) {
 $psgi.run(&dispatch-psgi);
 
 
-# vim: expandtab shiftwidth=4 ft=perl6
+# vim: expandtab shiftwidth=4 ft=raku

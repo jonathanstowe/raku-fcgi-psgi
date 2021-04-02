@@ -27,12 +27,12 @@ class FastCGI::NativeCall::PSGI {
 
     multi method new(Int :$sock!) {
         DEPRECATED('named parameter "socket"');
-        self.bless(socket => $sock);
+        self.new(socket => $sock);
     }
 
 
     multi method new(Int :$socket!) {
-        my $fcgi = FastCGI::NativeCall.new(sock => $socket);
+        my $fcgi = FastCGI::NativeCall.new(:$socket);
         self.bless(:$fcgi);
     }
 
@@ -63,15 +63,15 @@ class FastCGI::NativeCall::PSGI {
     }
 
     method handler {
-        %!env<psgi.version>            = [1,0];
-        %!env<psgi.url_scheme>        = 'http';
+        %!env<psgi.version>         = [1,0];
+        %!env<psgi.url_scheme>      = 'http';
         %!env<psgi.multithread>     = False;
-        %!env<psgi.multiprocess>     = False;
-        %!env<psgi.input>            = $!body;
-        %!env<psgi.errors>            = $*ERR;
+        %!env<psgi.multiprocess>    = False;
+        %!env<psgi.input>           = $!body;
+        %!env<psgi.errors>          = $*ERR;
         %!env<psgi.run_once>        = False;
-        %!env<psgi.nonblocking>        = False;
-        %!env<psgi.streaming>        = False;
+        %!env<psgi.nonblocking>     = False;
+        %!env<psgi.streaming>       = False;
 
         my $result;
         if $!app ~~ Callable {
@@ -88,4 +88,4 @@ class FastCGI::NativeCall::PSGI {
     }
 }
 
-# vim: ft=perl6
+# vim: ft=raku
