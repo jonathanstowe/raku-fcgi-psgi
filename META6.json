@@ -1,37 +1,39 @@
 {
-  "name": "FastCGI::NativeCall::PSGI",
-  "version": "0.0.5",
-  "auth": "github:jonathanstowe",
-  "api": "1,0",
   "description": "A PSGI interface for FastCGI::NativeCall",
-  "source-url": "https://github.com/jonathanstowe/raku-fcgi-psgi.git",
-  "support": {
-    "source": "https://github.com/jonathanstowe/raku-fcgi-psgi.git",
-    "bugtracker" : "https://github.com/jonathanstowe/raku-fcgi-psgi/issues"
-  },
-  "perl": "6.*",
-  "raku": "6.*",
-  "resources": [ ],
-  "build-depends": [ ],
-  "author": "github:carbin",
-  "depends": [
-    "PSGI",
-    "FastCGI::NativeCall"
+  "build-depends": [
   ],
+  "support": {
+    "bugtracker": "https://github.com/jonathanstowe/raku-fcgi-psgi/issues",
+    "source": "https://github.com/jonathanstowe/raku-fcgi-psgi.git"
+  },
+  "auth": "zef:jonathanstowe",
   "tags": [
     "http",
     "fastcgi",
     "fcgi",
     "psgi"
   ],
-  "license": "ISC",
-  "test-depends": [ ],
+  "api": "1,0",
+  "author": "github:carbin",
   "provides": {
     "FastCGI::NativeCall::PSGI": "lib/FastCGI/NativeCall/PSGI.pm6"
   },
-  "meta-version": "1",
   "authors": [
     "carbin",
     "jonathanstowe"
-  ]
+  ],
+  "name": "FastCGI::NativeCall::PSGI",
+  "source-url": "https://github.com/jonathanstowe/raku-fcgi-psgi.git",
+  "meta-version": "1",
+  "version": "0.0.6",
+  "resources": [
+  ],
+  "test-depends": [
+  ],
+  "raku": "6.*",
+  "depends": [
+    "PSGI",
+    "FastCGI::NativeCall"
+  ],
+  "license": "ISC"
 }

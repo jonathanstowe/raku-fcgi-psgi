@@ -1,3 +1,5 @@
+v0.0.6	Sun  7 Aug 09:48:12 BST 2022
+	* Upload to zef repository
 v0.0.5		Fri  2 Apr 19:20:36 BST 2021
 	* Rename Perl6 → Raku
 	* Spring clean
@@ -8,3 +10,4 @@ v0.0.3		Tue Oct 10 11:53:20 2017 +0100
 	* Better support for mod_fcgid
 v0.0.2		Mon Aug 28 08:41:14 2017 +0100 
 	* A bit of a spruce up
+
